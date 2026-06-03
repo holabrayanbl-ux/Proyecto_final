@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Web de Crisis Económica y Consumo Familiar</title>
+
+    <meta name="description"
+        content="Simulador interactivo para analizar abastecimiento, precios, transporte y consumo familiar en contextos de crisis.">
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+    <nav class="barra-navegacion">
+        <div class="contenedor nav-flex">
+
+            <a class="nav-logo" href="#inicio">
+                📊 Simulador de Contexto Actual
+            </a>
+
+            <div class="menu-navegacion">
+                <a href="#inicio">Inicio</a>
+                <a href="#contexto">Contexto</a>
+                <a href="#simulador">Simulador</a>
+                <a href="#conclusiones">Conclusiones</a>
+                <a href="#creditos">Créditos</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <header id="inicio" class="encabezado-principal">
+        <div class="contenedor text-center">
+
+            <h1>
+                Simulador de Abastecimiento, Precios y Consumo Familiar
+            </h1>
+
+            <p class="subtitulo">
+                Herramienta educativa que permite modelar matemáticamente
+                situaciones reales relacionadas con abastecimiento,
+                transporte, inflación y consumo familiar mediante
+                simulaciones dinámicas.
+            </p>
+
+        </div>
+    </header>
+
+    <section id="contexto" class="seccion-contexto">
+        <div class="contenedor grid-contexto">
+
+            <div class="tarjeta">
+                <div class="tarjeta-cuerpo">
+                    <h2>🎯 Objetivo del Proyecto</h2>
+                    <p>
+                        Este proyecto tiene como finalidad representar 
+                        situaciones económicas y sociales del contexto
+                        actual mediante modelos matemáticos sencillos,
+                        permitiendo visualizar cómo afectan el consumo,
+                        los precios, el transporte y el abastecimiento.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tarjeta">
+                <div class="tarjeta-cuerpo">
+                    <h2>📌 Contexto del Problema</h2>
+                    <p>
+                        En escenarios de inflación, bloqueos,
+                        dificultades logísticas o escasez,
+                        las familias deben adaptar sus decisiones 
+                        económicas constantemente.
+                    </p>
+                    <p>
+                        Este simulador permite analizar diferentes 
+                        escenarios para comprender mejor el impacto 
+                        de estas variables sobre el presupuesto, 
+                        abastecimiento y consumo. 
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <main id="simulador" class="contenedor seccion-principal-grid">
+
+        <section class="columna-izquierda">
+
+            <div class="tarjeta mb-4">
+                <div class="tarjeta-cuerpo">
+
+                    <h3 class="texto-primario">
+                        Selección de Escenario
+                    </h3>
+
+                    <p class="texto-secundario texto-pequeno">
+                        Elige uno de los escenarios disponibles y realiza
+                        simulaciones modificando los valores de entrada.
+                    </p>
+
+                    <hr class="linea-divisoria">
+
+                    <label for="selectorEscenario" class="etiqueta-bloque">
+                        Escenario a Simular:
+                    </label>
+
+                    <select class="selector-estilizado" id="selectorEscenario">
+                        <option value="alimentos" selected>🛒 Escenario B: Precios de Alimentos</option>
+                        <option value="carburantes">⛽ Escenario A: Abastecimiento de Carburantes</option>
+                        <option value="transporte">🚌 Escenario C: Costos de Transporte</option>
+                        <option value="compras">🛍 Escenario D: Compras Familiares</option>
+                        <option value="escasez">📦 Escenario E: Rumor de Escasez</option>
+                        <option value="poder">💰 Escenario F: Poder Adquisitivo</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <article class="tarjeta fondo-gris">
+                <div class="tarjeta-cuerpo">
+                    <h3 class="mb-3">
+                        📚 Casos de Estudio para Probar 
+                    </h3>
+                    <div id="guiaCasosEstudio"></div>
+                </div>
+            </article>
+
+        </section>
+
+        <section class="columna-derecha">
+
+            <div class="tarjeta mb-4 border-primario">
+                <div class="tarjeta-cabecera bg-primario text-blanco">
+                    <h3 id="tituloEscenario">Simulador Activo</h3>
+                </div>
+
+                <div class="tarjeta-cuerpo">
+                    <div class="alerta alerta-peligro oculto" id="alertaValidacion">
+                        ⚠️ Complete correctamente todos los campos con valores positivos.
+                    </div>
+
+                    <form id="formularioSimulador" onsubmit="return false;">
+                        <div id="camposDinamicos" class="formulario-grid"></div>
+
+                        <div class="contenedor-botones">
+                            <button type="button" class="btn btn-primario" id="btnCalcular">
+                                📊 Calcular
+                            </button>
+                            <button type="button" class="btn btn-secundario" id="btnLimpiar">
+                                Limpiar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <article class="tarjeta oculto" id="cardResultados">
+                <div class="tarjeta-cabecera text-blanco" id="headerResultados">
+                    Resultados del Análisis
+                </div>
+
+                <div class="tarjeta-cuerpo">
+                    <div id="contenedorMetricas" class="metricas-grid"></div>
+                    <div id="detalleResultados"></div>
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <section id="conclusiones" class="seccion-conclusiones">
+        <div class="contenedor">
+            <h2 class="text-center mb-4">Conclusiones </h2>
+            <div class="conclusiones-grid">
+                <article class="conclusion-item">
+                    <h4>Educación Financiera</h4>
+                    <p>
+                        Los pequeños incrementos en precios pueden generar impactos importantes 
+                        sobre el presupuesto familiar cuando se acumulan durante varios meses.
+                    </p>
+                </article>
+
+                <article class="conclusion-item">
+                    <h4>Toma de Decisiones</h4>
+                    <p>
+                        El uso de modelos matemáticos sencillos permite comprender mejor escenarios de 
+                        crisis y planificar estrategias de consumo más eficientes. 
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="creditos" class="seccion-creditos text-center">
+        <div class="contenedor">
+            <h3>Créditos </h3>
+            <p class="autor"><strong>Estudiante:</strong> Brayan Hans Bautista Saca </p>
+            
+        </div>
+    </section>
+
+    <footer class="pie-pagina">
+        <div class="contenedor text-center">
+            <p>&copy; 2026 | Programación Web I | Entrega de Desafío Final </p>
+        </div>
+    </footer>
+
+    <script src="java.js"></script>
+
+</body>
+
+</html>
